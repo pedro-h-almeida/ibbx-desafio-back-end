@@ -1,0 +1,95 @@
+org: pedrodev
+app: ibbx-desafio-back-end
+service: ibbx-desafio-back-end
+frameworkVersion: '3'
+
+plugins:
+  - serverless-offline
+  - serverless-dotenv-plugin
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  # Asset
+  createAsset:
+    handler: src/functions/asset.createAsset
+    events:
+      - httpApi:
+          method: POST
+          path: /assets
+  getAssets:
+    handler: src/functions/asset.getAssets
+    events:
+      - httpApi:
+          method: GET
+          path: /assets
+  deleteAsset:
+    handler: src/functions/asset.deleteAsset
+    events:
+      - httpApi:
+          method: DELETE
+          path: /assets/{assetId}
+
+
+  # Sensor
+  createSensor:
+    handler: src/functions/sensor.createSensor
+    events:
+      - httpApi:
+          method: POST
+          path: /assets/{assetId}/sensors
+  getSensors:
+    handler: src/functions/sensor.getSensors
+    events:
+      - httpApi:
+          method: GET
+          path: /assets/{assetId}/sensors
+  deleteSensor:
+    handler: src/functions/sensor.deleteSensor
+    events:
+      - httpApi:
+          method: DELETE
+          path: /assets/{assetId}/sensors/{sensorId}
+
+
+ # Sensor Data
+  createSensorData:
+    handler: src/functions/sensorData.createSensorData
+    events:
+      - httpApi:
+          method: POST
+          path: /assets/{assetId}/sensors/{sensorId}
+  getSensorData:
+    handler: src/functions/sensorData.getSensorData
+    events:
+      - httpApi:
+          method: GET
+          path: /assets/{assetId}/sensors/{sensorId}
+  deleteSensorData:
+    handler: src/functions/sensorData.deleteSensorData
+    events:
+      - httpApi:
+          method: DELETE
+          path: /assets/{assetId}/sensors/{sensorId}/{sensorDataId}
+
+ # Chart Data
+  getAssetsChart:
+    handler: src/functions/chart.getAssetsChart
+    events:
+      - httpApi:
+          method: GET
+          path: /getAssetsChart
+  getSensorsChart:
+    handler: src/functions/chart.getSensorsChart
+    events:
+      - httpApi:
+          method: GET
+          path: /getSensorsChart/{assetId}
+  getSensorDataChart:
+    handler: src/functions/chart.getSensorDataChart
+    events:
+      - httpApi:
+          method: GET
+          path: /getSensorDataChart/{sensorId}
