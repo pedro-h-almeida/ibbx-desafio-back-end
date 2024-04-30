@@ -75,12 +75,20 @@ module.exports.getAssetsChart = async (event, context) => {
     return {
       statusCode: 201,
       body: JSON.stringify({ option }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
 
   } catch (error) {
     return {
       statusCode: error.statusCode || 500,
       body: JSON.stringify({ error: error.messasge }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
   }
 };
@@ -161,12 +169,20 @@ module.exports.getSensorsChart = async (event, context) => {
     return {
       statusCode: 201,
       body: JSON.stringify({ option }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
 
   } catch (error) {
     return {
       statusCode: error.statusCode || 500,
       body: JSON.stringify({ error: error.messasge }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
   }
 };
@@ -226,12 +242,20 @@ module.exports.getSensorDataChart = async (event, context) => {
     return {
       statusCode: 200,
       body: JSON.stringify({ option }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
 
   } catch (error) {
     return {
       statusCode: error.statusCode || 500,
       body: JSON.stringify({ error: error.messasge }),
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
     }
   }
 };
